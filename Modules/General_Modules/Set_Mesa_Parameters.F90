@@ -1,0 +1,163 @@
+
+  MODULE Set_Mesa_Parameters
+!
+     IMPLICIT NONE
+#ifdef defaults
+     INTEGER, PARAMETER            :: BUFLEN = 2048
+     INTEGER, PARAMETER            :: MAXCOR=500000000
+     INTEGER, PARAMETER            :: MAXBIG=800
+     INTEGER, PARAMETER            :: MAXNBFKOHN=300
+     INTEGER, PARAMETER            :: MAXPRIMKOHN=500
+     INTEGER, PARAMETER            :: MAXCHAN=20
+     INTEGER, PARAMETER            :: MAXLTOP=10
+     INTEGER, PARAMETER            :: MAXLMTOP=40
+     INTEGER, PARAMETER            :: MAXSMALL=200
+     INTEGER, DIMENSION(buflen)    :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='defaults'
+#endif defaults
+#ifdef gfapplei8
+     INTEGER, PARAMETER            :: BUFLEN=1024
+     INTEGER, PARAMETER            :: MAXCOR=625000000
+     INTEGER, PARAMETER            :: MAXBIG=3500
+     INTEGER, PARAMETER            :: MAXNBFKOHN=300
+     INTEGER, PARAMETER            :: MAXPRIMKOHN=500
+     INTEGER, PARAMETER            :: MAXCHAN=20
+     INTEGER, PARAMETER            :: MAXLTOP=10 
+     INTEGER, PARAMETER            :: MAXLMTOP=40 
+     INTEGER, PARAMETER            :: MAXSMALL=200
+     INTEGER, DIMENSION(BUFLEN)    :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='gfortran-apple-i8'
+#endif gfapplei8
+#ifdef gfapplei4
+     INTEGER, PARAMETER            :: BUFLEN=2048
+     INTEGER, PARAMETER            :: MAXCOR=120000000
+     INTEGER, PARAMETER            :: MAXBIG=800
+     INTEGER, PARAMETER            :: MAXNBFKOHN=300
+     INTEGER, PARAMETER            :: MAXPRIMKOHN=500
+     INTEGER, PARAMETER            :: MAXCHAN=20
+     INTEGER, PARAMETER            :: MAXLTOP=10 
+     INTEGER, PARAMETER            :: MAXLMTOP=40 
+     INTEGER, PARAMETER            :: MAXSMALL=200
+     INTEGER, DIMENSION(buflen)    :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='gfortran-apple-i4'
+#endif gfapplei4
+#ifdef g77
+     INTEGER, PARAMETER          :: BUFLEN=2048
+     INTEGER, PARAMETER          :: MAXCOR=120000000
+     INTEGER, PARAMETER          :: MAXBIG=800
+     INTEGER, PARAMETER          :: MAXNBFKOHN=300
+     INTEGER, PARAMETER          :: MAXPRIMKOHN=500
+     INTEGER, PARAMETER          :: MAXCHAN=20
+     INTEGER, PARAMETER          :: MAXLTOP=10
+     INTEGER, PARAMETER          :: MAXLMTOP=40
+     INTEGER, PARAMETER          :: MAXSMALL=200
+     INTEGER, DIMENSION(BUFLEN)  :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='g77'
+#endif g77
+#ifdef f77applei8
+     INTEGER, PARAMETER          :: BUFLEN=1024
+     INTEGER, PARAMETER          :: MAXCOR=200000000
+     INTEGER, PARAMETER          :: MAXBIG=800
+     INTEGER, PARAMETER          :: MAXNBFKOHN=300
+     INTEGER, PARAMETER          :: MAXPRIMKOHN=500
+     INTEGER, PARAMETER          :: MAXCHAN=20
+     INTEGER, PARAMETER          :: MAXLTOP=10
+     INTEGER, PARAMETER          :: MAXLMTOP=40
+     INTEGER, PARAMETER          :: MAXSMALL=200
+     INTEGER, DIMENSION(BUFLEN)  :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='f77-apple-i8'
+#endif f77applei8
+#ifdef f77applei4
+     INTEGER, PARAMETER          :: BUFLEN=2048
+     INTEGER, PARAMETER          :: MAXCOR=120000000
+     INTEGER, PARAMETER          :: MAXBIG=800
+     INTEGER, PARAMETER          :: MAXNBFKOHN=300
+     INTEGER, PARAMETER          :: MAXPRIMKOHN=500
+     INTEGER, PARAMETER          :: MAXCHAN=20
+     INTEGER, PARAMETER          :: MAXLTOP=10
+     INTEGER, PARAMETER          :: MAXLMTOP=40
+     INTEGER, PARAMETER          :: MAXSMALL=200
+     INTEGER, DIMENSION(BUFLEN)  :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='f77-apple-i4'
+#endif f77applei4
+#ifdef ifapple
+     INTEGER, PARAMETER            :: BUFLEN = 1024
+     INTEGER, PARAMETER            :: MAXCOR=625000000
+     INTEGER, PARAMETER            :: MAXBIG=2000
+     INTEGER, PARAMETER            :: MAXNBFKOHN=500
+     INTEGER, PARAMETER            :: MAXPRIMKOHN=700
+     INTEGER, PARAMETER            :: MAXCHAN=20
+     INTEGER, PARAMETER            :: MAXLTOP=10
+     INTEGER, PARAMETER            :: MAXLMTOP=40
+     INTEGER, PARAMETER            :: MAXSMALL=400
+     INTEGER, DIMENSION(buflen)    :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='ifort-apple'
+#endif ifapple
+#ifdef ifmklci8
+     INTEGER, PARAMETER          :: BUFLEN=1024
+     INTEGER, PARAMETER          :: MAXCOR=625000000
+     INTEGER, PARAMETER          :: MAXBIG=2000
+     INTEGER, PARAMETER          :: MAXNBFKOHN=500
+     INTEGER, PARAMETER          :: MAXPRIMKOHN=700
+     INTEGER, PARAMETER          :: MAXCHAN=20
+     INTEGER, PARAMETER          :: MAXLTOP=10
+     INTEGER, PARAMETER          :: MAXLMTOP=60
+     INTEGER, PARAMETER          :: MAXSMALL=400
+     INTEGER, DIMENSION(BUFLEN)  :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='ifort-mkl-ci8'
+#endif ifmklci8
+#ifdef ifmkli8
+     INTEGER, PARAMETER          :: BUFLEN=1024
+     INTEGER, PARAMETER          :: MAXCOR=625000000
+     INTEGER, PARAMETER          :: MAXBIG=800
+     INTEGER, PARAMETER          :: MAXNBFKOHN=300
+     INTEGER, PARAMETER          :: MAXPRIMKOHN=500
+     INTEGER, PARAMETER          :: MAXCHAN=20
+     INTEGER, PARAMETER          :: MAXLTOP=10
+     INTEGER, PARAMETER          :: MAXLMTOP=40
+     INTEGER, PARAMETER          :: MAXSMALL=200
+     INTEGER, DIMENSION(BUFLEN)  :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='ifort-mkl-i8'
+#endif ifmkli8
+#ifdef ifmkli4
+     INTEGER, PARAMETER          :: BUFLEN=2048
+     INTEGER, PARAMETER          :: MAXCOR=500000000
+     INTEGER, PARAMETER          :: MAXBIG=800
+     INTEGER, PARAMETER          :: MAXNBFKOHN=300
+     INTEGER, PARAMETER          :: MAXPRIMKOHN=500
+     INTEGER, PARAMETER          :: MAXCHAN=20
+     INTEGER, PARAMETER          :: MAXLTOP=10
+     INTEGER, PARAMETER          :: MAXLMTOP=40
+     INTEGER, PARAMETER          :: MAXSMALL=200
+     INTEGER, DIMENSION(BUFLEN)  :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='ifort-mkl-i4'
+#endif ifmkli4
+#ifdef ifmklbi8
+     INTEGER, PARAMETER          :: BUFLEN=1024
+     INTEGER, PARAMETER          :: MAXCOR=625000000
+     INTEGER, PARAMETER          :: MAXBIG=1000
+     INTEGER, PARAMETER          :: MAXNBFKOHN=500
+     INTEGER, PARAMETER          :: MAXPRIMKOHN=700
+     INTEGER, PARAMETER          :: MAXCHAN=30
+     INTEGER, PARAMETER          :: MAXLTOP=20
+     INTEGER, PARAMETER          :: MAXLMTOP=60
+     INTEGER, PARAMETER          :: MAXSMALL=400
+     INTEGER, DIMENSION(BUFLEN)  :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='ifort-mklb-i8'
+#endif ifmklbi8
+#ifdef ifmklbi4
+     INTEGER, PARAMETER          :: BUFLEN=1024
+     INTEGER, PARAMETER          :: MAXCOR=625000000
+     INTEGER, PARAMETER          :: MAXBIG=800
+     INTEGER, PARAMETER          :: MAXNBFKOHN=300
+     INTEGER, PARAMETER          :: MAXPRIMKOHN=500
+     INTEGER, PARAMETER          :: MAXCHAN=20
+     INTEGER, PARAMETER          :: MAXLTOP=10
+     INTEGER, PARAMETER          :: MAXLMTOP=40
+     INTEGER, PARAMETER          :: MAXSMALL=200
+     INTEGER, DIMENSION(BUFLEN)  :: buffer
+     CHARACTER(LEN=120), PARAMETER :: MESA_STRING='ifort-mklb-i4'
+#endif ifmklbi4
+!################################################################################################
+!
+END MODULE  Set_Mesa_Parameters

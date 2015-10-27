@@ -1,0 +1,67 @@
+These directories contain utility routines which are used in more
+than one link.  The directories and their contents are:
+
+****Character_Manipulation_Subroutines:****     
+
+     This contains most of the character manipulation routines.
+
+****Common_Los_Alamos_Mathematical_Subroutines:****   (common los alamos mathematical subroutines)
+
+     This contains routines for performing general matrix operations, etc.
+     many of the routines from the blas and eispack which we use in the
+     codes are also kept here. the idea is that if you have "fast"
+     versions of some of these standard routines available, then when you
+     link to the $MD_LIB you will get the "fast" versions loaded instead.  This
+     is done using .F or .F90 suffices which invokes the Fortran preprocessor.
+     The preprocessor then compiles a set of routines that call the machine codes.
+
+****dft:****     
+
+     These contain routines used by density functional links.  Currently they are not
+     supported.
+
+****Double_Precision_Integral_Library:****
+
+     These are a few routines needed by the rys polynomial section
+     of the integal code which must be compiled with the "double precision"
+     option on the cray. they are normally compiled on 32-bit unix stations with no
+     special flags.
+
+****Integral_Library:****  
+
+     These are various auxiliary routines used by the integral and
+     derivative links.
+
+****IOsys_Subroutines:****     
+
+     This directory contains the machine independent portions of iosys,
+     the i/o manager.  This manager allows very efficient and transparent
+     use of input/output.
+
+****Mathematical_Subroutines:****   
+
+     This contains many of the "higher level" matrix manipulation routines,
+     diagonalizers, etc. many of them ultimately call a routine from
+     the blas or some other standard package.
+
+****Machine_Dependent_Subroutines:****  T
+
+     This directory contains those subroutines which are machine dependent.  In the
+     current environment most if not all of these routine are the same in every OS.
+     This was not the case 30 years ago.
+
+****Symmetry_Library:****
+
+     Routines to handle the determination of symmetry.  When symmetry can be
+     used in a code, it significantly can reduce the work.  Not all of the links can
+     use symmetry.
+
+****General_Utility_Subroutines:****
+
+     Generic matrix output routines, etc.
+
+****tcgmsg:****
+
+     The message passing library from Robert Harrison at PNL. this is
+     necessary if the parallel implementation is used. Note that this should
+     be done separately. Go to the makefile for that directory.

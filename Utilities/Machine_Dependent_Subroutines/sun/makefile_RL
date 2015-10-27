@@ -1,0 +1,89 @@
+#   %W%   %G%
+#
+#  Makefile for the machine-dependent portion of MesaLib
+#
+#   @(#)Makefile	5.2   4/18/95
+#
+#  Makefile for the machine-dependent portion of MesaLib
+#
+.SUFFIXES: .f90 .mod $(SUFFIXES)
+include $(UTILITIES)/Makefile.inc
+include $(LIBRARY)/Makefile.inc
+GET = sccs get
+REL = 
+
+SRCS = \
+	abortmsg.f \
+	closeabs.f \
+	chain.f \
+	comand.f \
+	dattim.f \
+	d1mach.f \
+	getmem.f \
+	iadtwp.f \
+	initds.f \
+	intowp.f \
+	iocls.f \
+	iogetc.f \
+	ioinq.f \
+	ioopn.f \
+	ioputc.f \
+	iorm.f \
+	itobyt.f \
+	lnkerr.f \
+	lxopen.f \
+	nchrpw.f \
+	openabs.f \
+	rdabs.f \
+	rmachsp.f \
+	rmachdp.f \
+	rmachr4.f \
+	rmachr8.f \
+	shiftl.f \
+	shiftr.f \
+	second.f \
+	timing.f \
+	traktm.f \
+	tsumry.f \
+	unqfil.f \
+	usrnam.f \
+	versn.f \
+	wind.f \
+	wpadti.f \
+	wptbyt.f \
+	wptoin.f \
+	wrabs.f 
+
+SRCSV = \
+	../sun/ioget.for \
+	../sun/ioput.for \
+	../sun/getscm.for
+
+all: $(SRCS:%.f=%.o) $(SRCSV:%.for=%.o)
+	$(AR) $(ARFLAGS) $(MESALIB) $(?)
+	$(RANLIB) $(MESALIB)
+
+$(SRCS:%.f=%.o): %.o: %.f
+	$(FC) $(FFLAGS) $<
+
+$(SRCSV:%.for=%.o): %.o: %.for
+	sed -e "s/#buflen/$(BUFLEN)/g" <$(*).for | \
+	sed -e "s/#maxcor/$(MAXCOR)/g" >$(*).f
+	$(FC) $(FFLAGS) $(*).f
+	rm -f $(*).f
+
+sources: $(SRCS)
+$(SRCS):
+	$(GET) $(RELEASE) $@
+
+link: sources
+	rm -f ../../../source/mdutil-sun.f
+	cat $(SRCS) > ../../../source/mdutil-sun.f
+
+print: link
+	lpr ../../../source/mdutil-sun.f
+
+clean:
+	rm -f *.o
+	rm -f core
+	rm -f *~
